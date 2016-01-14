@@ -1,0 +1,33 @@
+<?php
+        /**
+         * Implements hook_node_access()
+         * 
+         * Limit node access to jobs and events for anonymous users.
+         */
+        function ccednet_link_access_node_access($node, $op, $account) {
+
+                //only bother doing checks if the node is being viewed by an anonymous user
+                if (user_is_anonymous()) {
+                        $t_current = time();
+                        $t_secs_year = 31557600;
+                        $t_secs_month = 2592000;
+                        $t_node_created = $node->created;
+
+                        //only show events from the past year
+                        if (strcmp($node->type, "event_custom") == 0 && ($t_current-$t_secs_year > $t_node_created)) {
+
+                                //deny access to event nodes from the last year
+                                return NODE_ACCESS_DENY;
+
+                        //only show jobs from the past 3 monthes
+                        } elseif (strcmp($node->type, "jobs") == 0 && ($t_current-(3*$t_secs_month) > $t_node_created)) {
+
+                                //deny access to job nodes from the last 3 months
+                                return NODE_ACCESS_DENY;
+
+                        //otherwise, give access to the node
+                        } else {
+                                //give access to the node
+                        } //end else
+                } //end if 
+        } //end hook_node_access

@@ -1,0 +1,4 @@
+name = CCEDNET Restrict Link Access
+description = Restrict node access for jobs and events to users that are not logged in.
+package = CCEDNET
+core = 7.x
