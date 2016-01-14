@@ -1,0 +1,9 @@
+<?php
+	//preprocess each page to check if javascript should be added
+	function ccednet_social_media_preprocess_page() {
+		//get the path to the Javascript file, relative to theme path
+		$script_path = drupal_get_path('theme', 'ccednet') . '/js/social-media-bar.js';
+		
+		//load the Javascript on the front page
+		drupal_add_js($script_path);
+	}

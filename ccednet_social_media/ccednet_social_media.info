@@ -1,0 +1,4 @@
+name = CCEDNET Social Media Bar
+description = Floating social media bar for the front page of CCEDNET
+package = CCEDNET
+core = 7.x
